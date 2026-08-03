@@ -1,0 +1,244 @@
+// NGOConnect — Prisma schema (MySQL)
+// Run `npx prisma migrate dev --name init` after setting DATABASE_URL in .env
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  DONOR
+  ORGANIZATION
+  ADMIN
+}
+
+enum OrgCategory {
+  NGO
+  GOVERNMENT
+  OLD_AGE_HOME
+  ANIMAL_SHELTER
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum RequirementStatus {
+  OPEN
+  PARTIAL
+  FULFILLED
+}
+
+enum DonationStatus {
+  PENDING
+  APPROVED
+  COMPLETED
+  REJECTED
+}
+
+enum BadgeLevel {
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+  DIAMOND
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  passwordHash  String
+  phone         String?
+  role          Role     @default(DONOR)
+  avatarUrl     String?
+  impactScore   Int      @default(0)
+  level         BadgeLevel @default(BRONZE)
+  volunteerHours Int     @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  organization  Organization?
+  donations     Donation[]
+  badges        UserBadge[]
+  certificates  Certificate[]
+  notifications Notification[]
+  comparisons   ComparisonHistory[]
+
+  @@index([email])
+}
+
+model Organization {
+  id                  String      @id @default(cuid())
+  userId              String      @unique
+  user                User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name                String
+  category            OrgCategory
+  verified            Boolean     @default(false)
+  logoUrl             String?
+  coverUrl            String?
+  about               String      @db.Text
+  address             String
+  city                String
+  lat                 Float
+  lng                 Float
+  coordinatorName     String
+  phone               String
+  email               String
+  website             String?
+
+  studentCount        Int         @default(0)
+  teacherCount        Int         @default(0)
+  staffCount          Int         @default(0)
+  hostelAvailable     Boolean     @default(false)
+  currentBeneficiaries Int        @default(0)
+  servicesOffered     Json?       // string[]
+
+  needsFulfilledPct   Int         @default(0)
+  mealsSupported      Int         @default(0)
+  studentsBenefited   Int         @default(0)
+  totalDonations      Int         @default(0)
+
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+
+  requirements        Requirement[]
+  donations           Donation[]
+  gallery             GalleryImage[]
+  comparisonEntries   ComparisonHistory[] @relation("ComparisonOrgs")
+
+  @@index([category])
+  @@index([city])
+}
+
+model GalleryImage {
+  id             String       @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  url            String
+  createdAt      DateTime     @default(now())
+}
+
+model Requirement {
+  id             String            @id @default(cuid())
+  organizationId String
+  organization   Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  itemName       String
+  category       String
+  requiredQty    Int
+  availableQty   Int               @default(0)
+  unit           String
+  priority       Priority          @default(MEDIUM)
+  status         RequirementStatus @default(OPEN)
+
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  donationItems  DonationItem[]
+
+  @@index([organizationId])
+  @@index([priority])
+}
+
+model Donation {
+  id             String         @id @default(cuid())
+  donorId        String
+  donor          User           @relation(fields: [donorId], references: [id], onDelete: Cascade)
+  organizationId String
+  organization   Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  status         DonationStatus @default(PENDING)
+  note           String?        @db.Text
+  approvedBy     String?
+  certificateAvailable Boolean  @default(false)
+
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  items          DonationItem[]
+  certificate    Certificate?
+  badgesEarned   UserBadge[]
+
+  @@index([donorId])
+  @@index([organizationId])
+  @@index([status])
+}
+
+model DonationItem {
+  id            String       @id @default(cuid())
+  donationId    String
+  donation      Donation     @relation(fields: [donationId], references: [id], onDelete: Cascade)
+  requirementId String?
+  requirement   Requirement? @relation(fields: [requirementId], references: [id])
+  itemName      String
+  qty           Int
+  unit          String
+}
+
+model Badge {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  description String
+  icon        String
+  userBadges  UserBadge[]
+}
+
+model UserBadge {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badgeId    String
+  badge      Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+  donationId String?
+  donation   Donation? @relation(fields: [donationId], references: [id])
+  earnedOn   DateTime @default(now())
+
+  @@unique([userId, badgeId])
+}
+
+model Certificate {
+  id         String   @id @default(cuid())
+  donationId String   @unique
+  donation   Donation @relation(fields: [donationId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fileUrl    String
+  issuedOn   DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String   // DONATION_APPROVED | REQUIREMENT_UPDATED | URGENT_REQUIREMENT | REWARD_UNLOCKED | CERTIFICATE_GENERATED
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Category {
+  id    String @id @default(cuid())
+  name  String @unique
+  slug  String @unique
+  icon  String?
+}
+
+model ComparisonHistory {
+  id            String         @id @default(cuid())
+  userId        String
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organizations Organization[] @relation("ComparisonOrgs")
+  createdAt     DateTime       @default(now())
+}
