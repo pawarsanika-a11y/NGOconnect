@@ -15,7 +15,7 @@ export default function OrgCard({ org }: { org: Organization }) {
         <img
           src={org.coverUrl}
           alt=""
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          className="h-full w-full max-h-full max-w-full object-cover object-center transition duration-500 group-hover:scale-105"
         />
         <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-ink shadow-soft">
           {categoryLabels[org.category]}

@@ -34,15 +34,15 @@ export default function OrganizationDetail() {
     <div>
       {/* Cover */}
       <div className="relative h-64 w-full overflow-hidden sm:h-80">
-        <img src={org.coverUrl} alt="" className="h-full w-full object-cover" />
+        <img src={org.coverUrl} alt="" className="h-full w-full max-h-full max-w-full object-cover object-center" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Basic info */}
-        <div className="-mt-16 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="-mt-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="flex items-end gap-4">
-            <img src={org.logoUrl} alt="" className="h-28 w-28 rounded-2xl border-4 border-paper object-cover shadow-lift dark:border-ink" />
+            <img src={org.logoUrl} alt="" className="h-28 w-28 max-h-full max-w-full rounded-2xl border-4 border-paper object-cover object-center shadow-lift dark:border-ink" />
             <div className="pb-1">
               <div className="flex items-center gap-2">
                 <h1 className="font-display text-2xl font-semibold sm:text-3xl">{org.name}</h1>
@@ -155,7 +155,7 @@ export default function OrganizationDetail() {
           <h2 className="font-display text-xl font-semibold">Gallery</h2>
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {org.gallery.map((g, i) => (
-              <img key={i} src={g} alt="" className="h-40 w-full rounded-xl object-cover" />
+              <img key={i} src={g} alt="" className="h-40 w-full max-h-full max-w-full rounded-xl object-cover object-center" />
             ))}
           </div>
         </section>
