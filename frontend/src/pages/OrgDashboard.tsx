@@ -57,7 +57,7 @@ export default function OrgDashboard() {
                 "flex shrink-0 items-center gap-2 rounded-xl px-4 py-2.5 text-left text-sm font-medium transition lg:w-full",
                 active === item.key
                   ? "bg-primary text-white shadow-soft"
-                  : "text-ink/60 hover:bg-ink/5 dark:text-paper/60 dark:hover:bg-white/5"
+                  : "text-ink/60 hover:bg-primary-50 dark:text-paper/60 dark:hover:bg-secondary"
               )}
             >
               <item.icon className="h-4 w-4" /> {item.label}
@@ -136,7 +136,7 @@ export default function OrgDashboard() {
               <div className="manifest-card overflow-x-auto">
                 <table className="w-full min-w-[700px] text-sm">
                   <thead>
-                    <tr className="border-b border-ink/10 text-left text-ink/50 dark:border-paper/10 dark:text-paper/50">
+                    <tr className="border-b border-[#D3E2DC] text-left text-ink/50 dark:text-paper/50">
                       <th className="p-4 font-medium">Item</th>
                       <th className="p-4 font-medium">Progress</th>
                       <th className="p-4 font-medium">Priority</th>
@@ -157,7 +157,7 @@ export default function OrgDashboard() {
                         <td className="p-4 text-ink/60 dark:text-paper/60">{r.status}</td>
                         <td className="p-4">
                           <div className="flex gap-2">
-                            <button aria-label="Edit" className="rounded-lg p-2 hover:bg-ink/5 dark:hover:bg-white/10"><Pencil className="h-4 w-4" /></button>
+                            <button aria-label="Edit" className="rounded-lg p-2 hover:bg-primary-50 dark:hover:bg-secondary"><Pencil className="h-4 w-4" /></button>
                             <button aria-label="Delete" className="rounded-lg p-2 text-rose-600 hover:bg-rose-50"><Trash2 className="h-4 w-4" /></button>
                           </div>
                         </td>
@@ -187,7 +187,7 @@ export default function OrgDashboard() {
                         <button className="btn-secondary !py-1.5 text-xs text-rose-600"><XCircle className="h-3.5 w-3.5" /> Reject</button>
                       </div>
                     ) : (
-                      <span className="rounded-full bg-ink/5 px-3 py-1 text-xs font-semibold dark:bg-white/10">{d.status}</span>
+                      <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold dark:bg-secondary">{d.status}</span>
                     )}
                   </div>
                 ))}

@@ -32,14 +32,14 @@ export default function Login() {
         <p className="mt-1 text-sm text-ink/50 dark:text-paper/50">Log in to continue giving what's needed.</p>
       </div>
 
-      <div className="mt-8 grid grid-cols-2 gap-2 rounded-full bg-ink/5 p-1 dark:bg-white/5">
+      <div className="mt-8 grid grid-cols-2 gap-2 rounded-full bg-primary-50 p-1 dark:bg-secondary">
         {(["DONOR", "ORGANIZATION"] as Role[]).map((r) => (
           <button
             key={r}
             onClick={() => setRole(r)}
             className={cn(
               "flex items-center justify-center gap-1.5 rounded-full py-2 text-sm font-semibold transition",
-              role === r ? "bg-white shadow-soft text-primary dark:bg-ink" : "text-ink/50 dark:text-paper/50"
+              role === r ? "bg-surface shadow-soft text-primary dark:bg-card" : "text-ink/50 dark:text-paper/50"
             )}
           >
             {r === "DONOR" ? <HeartHandshake className="h-4 w-4" /> : <Building2 className="h-4 w-4" />}

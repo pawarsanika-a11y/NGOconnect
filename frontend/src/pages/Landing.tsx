@@ -36,10 +36,17 @@ export default function Landing() {
   }
 
   return (
-    <div>
+    <div className="bg-paper dark:bg-ink">
       {/* Hero */}
       <section className="relative overflow-hidden bg-primary-900 text-paper">
         <div className="absolute inset-0 bg-grain" />
+        <img
+          src="/img_ngo.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 h-full w-full object-cover object-center opacity-65 sm:w-3/4 sm:object-left"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary-900 via-primary-900/65 to-primary-900/5" />
         <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary-600/40 blur-3xl" />
         <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-accent-500/20 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -105,7 +112,7 @@ export default function Landing() {
       </section>
 
       {/* Featured organizations */}
-      <section className="bg-surface py-16 dark:bg-ink/40">
+      <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between">
             <div>
@@ -140,16 +147,16 @@ export default function Landing() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-primary-900 py-16 text-paper">
+      <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="eyebrow text-primary-200">Voices from the network</p>
+          <p className="eyebrow">Voices from the network</p>
           <h2 className="mt-2 font-display text-3xl font-semibold">Testimonials</h2>
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {testimonials.map((t) => (
-              <div key={t.name} className="rounded-2xl bg-white/5 p-6 backdrop-blur">
-                <p className="font-display text-lg leading-relaxed text-primary-50">&ldquo;{t.quote}&rdquo;</p>
+              <div key={t.name} className="rounded-2xl bg-primary-900/5 p-6 backdrop-blur dark:bg-white/5">
+                <p className="font-display text-lg leading-relaxed text-ink dark:text-primary-50">&ldquo;{t.quote}&rdquo;</p>
                 <p className="mt-4 text-sm font-semibold">{t.name}</p>
-                <p className="text-xs text-primary-200">{t.role}</p>
+                <p className="text-xs text-primary-600 dark:text-primary-200">{t.role}</p>
               </div>
             ))}
           </div>

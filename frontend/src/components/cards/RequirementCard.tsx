@@ -32,7 +32,7 @@ export default function RequirementCard({ req, onDonate }: { req: Requirement; o
         <span>
           <span className="font-mono font-semibold text-ink dark:text-paper">{req.availableQty}</span> / {req.requiredQty} {req.unit} fulfilled
         </span>
-        <span className={`rounded-full px-2 py-0.5 font-medium ${req.status === "FULFILLED" ? "bg-primary-50 text-primary-700" : "bg-ink/5 text-ink/60 dark:bg-white/10 dark:text-paper/60"}`}>
+        <span className={`rounded-full px-2 py-0.5 font-medium ${req.status === "FULFILLED" ? "bg-primary-50 text-primary-700" : "bg-primary-50 text-ink/60 dark:bg-secondary dark:text-paper/60"}`}>
           {req.status === "FULFILLED" ? "Fulfilled" : `Needs ${needed} more`}
         </span>
       </div>

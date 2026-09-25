@@ -3,7 +3,7 @@ import { HeartHandshake, Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-ink/10 bg-surface dark:bg-ink/60 dark:border-paper/10">
+    <footer className="border-t border-[#D3E2DC] bg-primary-50 dark:bg-secondary">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
           <div className="flex items-center gap-2">
@@ -46,7 +46,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-ink/10 py-5 text-center text-xs text-ink/40 dark:border-paper/10 dark:text-paper/40">
+      <div className="border-t border-[#D3E2DC] py-5 text-center text-xs text-ink/40 dark:text-paper/40">
         © {new Date().getFullYear()} NGOConnect. Built for need-based giving, not fundraising.
       </div>
     </footer>

@@ -5,7 +5,7 @@ import { formatDate } from "@/lib/utils";
 export default function BadgeChip({ badge }: { badge: Badge }) {
   const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[badge.icon] ?? Icons.Award;
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-ink/10 bg-white p-3 dark:bg-white/5 dark:border-paper/10">
+    <div className="flex items-center gap-3 rounded-xl border border-[#D3E2DC] bg-surface p-3 dark:bg-card">
       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-100 to-accent-400 text-accent-700">
         <Icon className="h-5 w-5" />
       </span>
