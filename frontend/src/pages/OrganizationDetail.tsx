@@ -154,8 +154,11 @@ export default function OrganizationDetail() {
         <section className="my-12">
           <h2 className="font-display text-xl font-semibold">Gallery</h2>
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {org.gallery.map((g, i) => (
-              <img key={i} src={g} alt="" className="h-40 w-full max-h-full max-w-full rounded-xl object-cover object-center" />
+            {org.gallery.map((g, i) => {
+              const imageUrl = g.includes("google.com/s2/favicons") ? org.coverUrl : g;
+              return (
+                <img key={i} src={imageUrl} alt={`${org.name} gallery image ${i + 1}`} className="h-40 w-full max-h-full max-w-full rounded-xl object-cover object-center" />
+              );
             ))}
           </div>
         </section>

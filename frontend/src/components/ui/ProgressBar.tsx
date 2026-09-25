@@ -17,7 +17,7 @@ export default function ProgressBar({ value, colorClass = "bg-primary", label, c
           <span className="font-mono">{clamped}%</span>
         </div>
       )}
-      <div className="h-2 w-full overflow-hidden rounded-full bg-ink/[0.07] dark:bg-white/10">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-primary-50 dark:bg-secondary">
         <div
           className={cn("h-full rounded-full transition-all duration-500", colorClass)}
           style={{ width: `${clamped}%` }}

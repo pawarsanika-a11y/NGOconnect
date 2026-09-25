@@ -13,7 +13,7 @@ export default function DonateModal({ req, onClose }: { req: Requirement; onClos
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/50 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-lift dark:bg-ink">
+      <div className="w-full max-w-md rounded-2xl border border-[#D3E2DC] bg-surface p-6 shadow-lift dark:bg-card">
         <div className="flex items-start justify-between">
           <h3 className="font-display text-lg font-semibold">Donate: {req.itemName}</h3>
           <button onClick={onClose} aria-label="Close"><X className="h-5 w-5 text-ink/40" /></button>

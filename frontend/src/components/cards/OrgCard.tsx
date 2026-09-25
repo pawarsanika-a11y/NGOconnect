@@ -17,7 +17,7 @@ export default function OrgCard({ org }: { org: Organization }) {
           alt=""
           className="h-full w-full max-h-full max-w-full object-cover object-center transition duration-500 group-hover:scale-105"
         />
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-ink shadow-soft">
+        <span className="absolute left-3 top-3 rounded-full bg-surface/90 px-2.5 py-1 text-xs font-semibold text-ink shadow-soft">
           {categoryLabels[org.category]}
         </span>
         {org.urgent && (
@@ -42,7 +42,7 @@ export default function OrgCard({ org }: { org: Organization }) {
         </p>
 
         {topNeed && (
-          <div className="mt-3 rounded-lg bg-ink/[0.03] px-3 py-2 text-xs dark:bg-white/5">
+          <div className="mt-3 rounded-lg bg-primary-50 px-3 py-2 text-xs dark:bg-secondary">
             <span className="font-medium text-ink/70 dark:text-paper/70">Priority need: </span>
             <span className="font-semibold">{topNeed.itemName}</span>
             <span className="text-ink/50 dark:text-paper/50"> · needs {topNeed.requiredQty - topNeed.availableQty} {topNeed.unit}</span>

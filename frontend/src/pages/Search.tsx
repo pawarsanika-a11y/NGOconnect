@@ -68,7 +68,7 @@ export default function SearchPage() {
         </button>
       </div>
 
-      <div className="mt-6 flex items-center gap-2 rounded-full border border-ink/10 bg-white px-4 py-2 shadow-soft dark:bg-white/5 dark:border-paper/10">
+      <div className="mt-6 flex items-center gap-2 rounded-full border border-[#D3E2DC] bg-surface px-4 py-2 shadow-soft dark:bg-secondary">
         <SearchIcon className="h-4 w-4 text-ink/40" />
         <input
           value={query}
@@ -95,7 +95,7 @@ export default function SearchPage() {
                   onClick={() => setCategory(c.key)}
                   className={cn(
                     "rounded-lg px-3 py-2 text-left text-sm transition",
-                    category === c.key ? "bg-primary-50 font-semibold text-primary-700 dark:bg-primary-900/40 dark:text-primary-200" : "hover:bg-ink/5 dark:hover:bg-white/5"
+                    category === c.key ? "bg-primary-50 font-semibold text-primary-700 dark:bg-card dark:text-primary-200" : "hover:bg-primary-50 dark:hover:bg-card"
                   )}
                 >
                   {c.label}
@@ -141,7 +141,7 @@ export default function SearchPage() {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortKey)}
-              className="rounded-lg border border-ink/10 bg-white px-3 py-1.5 text-sm dark:bg-white/5 dark:border-paper/10"
+              className="rounded-lg border border-[#D3E2DC] bg-surface px-3 py-1.5 text-sm dark:bg-secondary"
             >
               <option value="nearest">Nearest</option>
               <option value="mostNeeded">Most Needed</option>

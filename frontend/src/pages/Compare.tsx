@@ -64,7 +64,7 @@ export default function Compare() {
               "flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition",
               selectedIds.includes(o.id)
                 ? "border-primary bg-primary-50 text-primary-700 dark:bg-primary-900/40 dark:text-primary-200"
-                : "border-ink/10 hover:border-primary/40 dark:border-paper/10"
+                : "border-[#D3E2DC] hover:border-primary/40"
             )}
           >
             {o.name}
@@ -83,7 +83,7 @@ export default function Compare() {
           <div className="manifest-card mt-8 overflow-x-auto">
             <table className="w-full min-w-[600px] text-sm">
               <thead>
-                <tr className="border-b border-ink/10 dark:border-paper/10">
+                <tr className="border-b border-[#D3E2DC]">
                   <th className="p-4 text-left font-semibold text-ink/50 dark:text-paper/50">Metric</th>
                   {selected.map((o) => (
                     <th key={o.id} className="p-4 text-left">

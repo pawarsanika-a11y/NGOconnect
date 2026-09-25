@@ -39,14 +39,14 @@ export default function DonorDashboard() {
         <p className="mt-1 text-sm text-ink/50 dark:text-paper/50">Here's your giving activity and impact.</p>
       </div>
 
-      <div className="mt-6 flex gap-1 overflow-x-auto rounded-full bg-ink/5 p-1 dark:bg-white/5">
+      <div className="mt-6 flex gap-1 overflow-x-auto rounded-full bg-primary-50 p-1 dark:bg-secondary">
         {tabs.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
             className={cn(
               "flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition",
-              tab === t.key ? "bg-white text-primary shadow-soft dark:bg-ink" : "text-ink/50 dark:text-paper/50"
+              tab === t.key ? "bg-surface text-primary shadow-soft dark:bg-card" : "text-ink/50 dark:text-paper/50"
             )}
           >
             <t.icon className="h-4 w-4" /> {t.label}
@@ -121,7 +121,7 @@ export default function DonorDashboard() {
           <div className="manifest-card overflow-x-auto">
             <table className="w-full min-w-[600px] text-sm">
               <thead>
-                <tr className="border-b border-ink/10 text-left text-ink/50 dark:border-paper/10 dark:text-paper/50">
+                <tr className="border-b border-[#D3E2DC] text-left text-ink/50 dark:text-paper/50">
                   <th className="p-4 font-medium">Organization</th>
                   <th className="p-4 font-medium">Date</th>
                   <th className="p-4 font-medium">Items</th>
@@ -135,7 +135,7 @@ export default function DonorDashboard() {
                     <td className="p-4 text-ink/60 dark:text-paper/60">{formatDate(d.date)}</td>
                     <td className="p-4 text-ink/60 dark:text-paper/60">{d.items.map((i) => `${i.qty} ${i.unit} ${i.name}`).join(", ")}</td>
                     <td className="p-4">
-                      <span className="rounded-full bg-ink/5 px-2.5 py-1 text-xs font-semibold dark:bg-white/10">{d.status}</span>
+                      <span className="rounded-full bg-primary-50 px-2.5 py-1 text-xs font-semibold dark:bg-secondary">{d.status}</span>
                     </td>
                   </tr>
                 ))}
@@ -165,7 +165,7 @@ export default function DonorDashboard() {
                     key={l}
                     className={cn(
                       "rounded-full px-4 py-1.5 text-sm font-semibold",
-                      l === donorProfile.level ? "bg-accent text-white" : "bg-ink/5 text-ink/50 dark:bg-white/10 dark:text-paper/50"
+                      l === donorProfile.level ? "bg-accent text-paper" : "bg-primary-50 text-ink/50 dark:bg-secondary dark:text-paper/50"
                     )}
                   >
                     {l}

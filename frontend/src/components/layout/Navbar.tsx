@@ -33,7 +33,7 @@ export default function Navbar() {
               to={l.to}
               className={({ isActive }) =>
                 cn(
-                  "rounded-full px-4 py-2 text-sm font-medium text-ink/70 transition hover:bg-ink/5 dark:text-paper/70 dark:hover:bg-white/5",
+                  "rounded-full px-4 py-2 text-sm font-medium text-ink/70 transition hover:bg-primary-50 dark:text-paper/70 dark:hover:bg-secondary",
                   isActive && "bg-primary-50 text-primary-700 dark:bg-primary-900/40 dark:text-primary-200"
                 )
               }
@@ -47,7 +47,7 @@ export default function Navbar() {
           <button
             aria-label="Toggle dark mode"
             onClick={toggle}
-            className="rounded-full p-2 text-ink/60 transition hover:bg-ink/5 dark:text-paper/60 dark:hover:bg-white/10"
+            className="rounded-full p-2 text-ink/60 transition hover:bg-primary-50 dark:text-paper/60 dark:hover:bg-secondary"
           >
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
@@ -77,30 +77,30 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-ink/10 bg-paper px-4 py-4 dark:bg-ink md:hidden">
+        <div className="border-t border-[#D3E2DC] bg-primary-50 px-4 py-4 dark:bg-secondary md:hidden">
           <div className="flex flex-col gap-1">
             {links.map((l) => (
               <NavLink
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-ink/5 dark:hover:bg-white/5"
+                className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-primary-50 dark:hover:bg-card"
               >
                 {l.label}
               </NavLink>
             ))}
-            <button onClick={toggle} className="flex items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-ink/5 dark:hover:bg-white/5">
+            <button onClick={toggle} className="flex items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-primary-50 dark:hover:bg-card">
               {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />} Toggle theme
             </button>
-            <hr className="my-2 border-ink/10" />
+            <hr className="my-2 border-[#D3E2DC]" />
             {user ? (
               <>
-                <Link to={user.role === "ORGANIZATION" ? "/org-dashboard" : "/dashboard"} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-ink/5 dark:hover:bg-white/5">Dashboard</Link>
-                <button onClick={() => { logout(); setOpen(false); navigate("/"); }} className="rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-ink/5 dark:hover:bg-white/5">Logout</button>
+                <Link to={user.role === "ORGANIZATION" ? "/org-dashboard" : "/dashboard"} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-primary-50 dark:hover:bg-card">Dashboard</Link>
+                <button onClick={() => { logout(); setOpen(false); navigate("/"); }} className="rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-primary-50 dark:hover:bg-card">Logout</button>
               </>
             ) : (
               <>
-                <Link to="/login" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-ink/5 dark:hover:bg-white/5">Log in</Link>
+                <Link to="/login" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-primary-50 dark:hover:bg-card">Log in</Link>
                 <Link to="/register" onClick={() => setOpen(false)} className="btn-primary mt-1 justify-center">Get Started</Link>
               </>
             )}
